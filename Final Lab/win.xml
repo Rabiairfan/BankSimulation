@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Final Lab" default="compile">
+   
+	<target name="create">
+		<mkdir dir="build"/>
+		<mkdir dir="build/classes"/>
+	</target>
+	
+	<target name="compile" depends="create">
+				<javac srcdir="src/banksimulation" destdir="build"  includeantruntime="false" compiler="modern"  ></javac>
+				
+	</target>
+	
+	<target name="buildjar" depends="compile">
+	        <mkdir dir="build/jar"/>
+	        <jar destfile="build/jar/BankSimulation.jar" basedir="build/classes">
+	            <manifest>
+	                <attribute name="Main-Class" value="banksimulation.BankSimulation"/>
+	            </manifest>
+	        </jar>
+	</target>
+	
+	<target name="run" depends="buildjar">
+		<java jar="build/jar/BankSimulation.jar" fork="true"/>
+	</target>
+	
+</project>
